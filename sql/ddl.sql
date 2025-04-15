@@ -83,3 +83,11 @@ CREATE TABLE "notifications" (
   "metadata_id" integer references metadata(id),
   "is_read" bool
 );
+
+DROP TABLE IF EXISTS "goals_record";
+
+ALTER TABLE "transaction"
+ADD COLUMN "goals_id" integer REFERENCES goals(id);
+
+ALTER TABLE "transaction"
+ADD COLUMN "menu_type" varchar(10) CHECK (menu_type IN ('goal', 'pocket'));

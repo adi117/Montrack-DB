@@ -19,20 +19,19 @@ INSERT INTO goals (id, user_id, metadata_id, name, amount, document) VALUES
 (1, 1, 1, 'New Laptop', 1000, 'laptop.pdf'),
 (2, 2, 2, 'Vacation Fund', 1500, 'vacation.pdf');
 
-INSERT INTO goals_record (id, goals_id, name, metadata_id, amount) VALUES
-(1, 1, 'Initial deposit', 1, 200),
-(2, 1, 'Monthly saving', 1, 300),
-(3, 2, 'Bonus deposit', 2, 500),
-(4, 2, 'Holiday top-up', 2, 200);
-
 INSERT INTO transaction_types (id, label) VALUES
 (1, 'income'),
 (2, 'expense');
 
-INSERT INTO transaction (id, user_id, pocket_id, metadata_id, transaction_types_id, name, amount, document) VALUES
-(1, 1, 1, 1, 2, 'Bought groceries', 50, 'receipt1.pdf'),
-(2, 2, 2, 2, 2, 'Flight booking', 300, 'receipt2.pdf'),
-(3, 1, NULL, 1, 1, 'Salary', 2000, NULL);
+INSERT INTO transaction (id, user_id, pocket_id, metadata_id, transaction_types_id, name, amount, document, goals_id, menu_type) VALUES
+-- Transactions from pockets
+(1, 1, 1, 1, 1, 'Bought groceries', 50, 'receipt1.pdf', NULL, 'pocket'),
+(2, 2, 2, 2, 2, 'Flight booking', 300, 'receipt2.pdf', NULL, 'pocket'),
+
+-- Transaction from goals
+(4, 1, NULL, 1, 1, 'Saved for laptop', 300, 'goal_receipt.pdf', 1, 'goal'),
+(5, 2, NULL, 2, 1, 'Vacation top-up', 200, NULL, 2, 'goal');
+
 
 INSERT INTO notification_messages (id, title, description) VALUES
 (1, 'Transaction Alert', 'You spent 50 on groceries.'),
